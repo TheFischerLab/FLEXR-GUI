@@ -47,12 +47,12 @@ On Intel Macs:
 4. Launching Coot1 with the `FLEXR-GUI`:
 
 ```
-/path/to/bin/coot --script /path/to/flexr_extention.py
+/path/to/bin/coot --script /path/to/flexr_extentions.py
 ```
 
 5. (optional) A variable for this can also be created in your path with:
 ```
-export coot1='/path/to/bin/coot --script /path/to/flexr_extention.py'
+export coot1='/path/to/bin/coot --script /path/to/flexr_extentions.py'
 ```
 
 ## Usage
