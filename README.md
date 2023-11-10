@@ -20,14 +20,13 @@ You will need the following tools installed and accessible in your path:
 4. [Coot1](https://github.com/pemsley/coot)
 
 Once these are installed, you need to install these python libraries to the Homebrew python:
-1. Install dependencies (NumPy, SciPy, and Pandas) (on M1 Macs):
+1. Install Python libraries (approximate path for M1 Macs):
 
 ```
-/opt/homebrew/bin/python3.10 -m pip install pandas
-
+/opt/homebrew/bin/python3.11 -m pip install pandas numpy scipy matplotlib
 ```
 
-2. Clone the latest release of FLEXR:
+2. Clone the latest release of `FLEXR-GUI`:
 
 ```
 git clone https://github.com/TheFischerLab/FLEXR-GUI.git
@@ -63,5 +62,10 @@ export coot1='/path/to/bin/coot --script /path/to/flexr_extention.py'
 ![FLEXR-GUI1](img/flexr-gui1.png)
 
 2. FLEXR can be run in two ways - with and without precomputed Ringer measurements.
+
 2a. If you want to run FLEXR, including Ringer, then you need: (1) a PDB, (2) an MTZ, and (3) Phenix installed.
+![FLEXR-GUI1](img/flexr-gui2.png)
+
 2b. If you you have precomputed Ringer measurements, then you need (1) a PDB and (2) the path to the Ringer output CSV.
+![FLEXR-GUI1](img/flexr-gui3.png)
+
