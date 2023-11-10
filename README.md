@@ -44,7 +44,7 @@ On Intel Macs:
 /user/local/homebrew/Cellar/coot/<version>/lib/python3.11/site-packages/coot
 ```
 
-4. Launching Coot1 with the FLEXR GUI:
+4. Launching Coot1 with the `FLEXR-GUI`:
 
 ```
 /path/to/bin/coot --script /path/to/flexr_extention.py
@@ -57,9 +57,10 @@ export coot1='/path/to/bin/coot --script /path/to/flexr_extention.py'
 
 ## Usage
 
-1. When you open Coot1 - you should see the FLEXR GUI:
+1. When you open Coot1 - you should see a button for the `FLEXR-GUI` menu:
 
 ![FLEXR-GUI1](img/flexr-gui1.png)
+
 
 2. FLEXR can be run in two ways - with and without precomputed Ringer measurements.
 
@@ -69,3 +70,12 @@ export coot1='/path/to/bin/coot --script /path/to/flexr_extention.py'
 2b. If you you have precomputed Ringer measurements, then you need (1) a PDB and (2) the path to the Ringer output CSV.
 ![FLEXR-GUI1](img/flexr-gui3.png)
 
+## Output
+
+1. Running the `FLEXR-GUI` will create a new PDB file with alternative side chain conformations (if any are found).
+New alt confs can be quickly assessed with a native Coot1 `altconf GUI` (Draw->Molecule->Residues with Alt Confs...):
+
+![FLEXR-GUI](img/flexr-gui4.png)
+
+2. The typical `FLEXR` output files are saved in the directory from which Coot1 was launched.
+More information on that can be found in the original [FLEXR](https://github.com/thefischerlab/flexr) repository.
