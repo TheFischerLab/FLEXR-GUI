@@ -32,27 +32,26 @@ Once these are installed, you need to install these python libraries to the Home
 git clone https://github.com/TheFischerLab/FLEXR-GUI.git
 ```
 
-3. Move the contents of `FLEXR-GUI` into the Coot1 Python directory:
-
-On M1 Macs:
+3. Move the contents of `FLEXR-GUI` into the Coot1 Python directory. For example on M1 Macs, with:
 ```
-/opt/homebrew/Cellar/coot/<version>/lib/python3.11/site-packages/coot
+cp -r ./FLEXR-GUI/* /opt/homebrew/Cellar/coot/<version>/lib/python3.11/site-packages/coot
 ```
 
-On Intel Macs:
+and Intel Macs:
+
 ```
-/user/local/homebrew/Cellar/coot/<version>/lib/python3.11/site-packages/coot
+cp -r ./FLEXR-GUI/* /user/local/homebrew/Cellar/coot/<version>/lib/python3.11/site-packages/coot
 ```
 
-4. Launching Coot1 with the `FLEXR-GUI`:
+4. Launch Coot1 with the `FLEXR-GUI` extension using:
 
 ```
 /path/to/bin/coot --script /path/to/flexr_extentions.py
 ```
 
-5. (optional) A variable for this can also be created in your path with:
+5. (optional) A variable in your path can be created so that Coot1 always opens with `FLEXR` loaded with:
 ```
-export coot1='/path/to/bin/coot --script /path/to/flexr_extentions.py'
+alias coot1='/path/to/bin/coot --script /path/to/flexr_extentions.py'
 ```
 
 ## Usage
