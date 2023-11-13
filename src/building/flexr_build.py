@@ -60,9 +60,9 @@ def building(build_list,filein,branchopt,molnum,exitopt,atom_list,alt_loc):
 
         #need to double check
         if branchopt == 'CA':
-            branchopt = 1
-        else:
             branchopt = 0
+        else:
+            branchopt = 1
 
         build_list_file = build_list[:-4]
 
