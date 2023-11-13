@@ -178,6 +178,17 @@ def add_flexr_gui():
     vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
     h_sep = Gtk.Separator(orientation=Gtk.Orientation.HORIZONTAL)
 
+    ## header
+    hint_text = Gtk.Label()
+    hint_text.set_markup("\n For full instructions, go to our <a href=\"https://github.com/TheFischerLab/FLEXR-GUI\" "
+                 "title=\"\">GitHub</a> repo")
+    vbox.append(hint_text)
+
+    hint_text2 = Gtk.Label()
+    hint_text2.set_markup("\n Please cite: <a href=\"https://doi.org/10.1107/S2059798323002498\" "
+                "title=\"\">Stachowski and Fischer, Acta Cryst. (2023) D79, 354-357</a> \n")
+    vbox.append(hint_text2)
+
     ## drop down for picking molecule
     hint_text = Gtk.Label(label="\n Molecule:")
     combobox_molecule = Gtk.ComboBox()
