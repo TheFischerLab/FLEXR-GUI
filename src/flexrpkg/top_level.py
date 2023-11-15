@@ -37,7 +37,7 @@ def get_coot_loc():
         libraryloc = '/opt/homebrew/Cellar/coot/'+version+'/lib/python3.11/site-packages/coot/library/rotamer_library_coot.csv'
     except:
         try:
-            version = os.popen('/usr/local/homebrew/bin/coot --version').read()
+            version = os.popen('/usr/local/bin/coot --version').read()
             version = version.split()[0]
             libraryloc = '/usr/local/Cellar/coot/'+version+'/lib/python3.11/site-packages/coot/library/rotamer_library_coot.csv'
         except:
