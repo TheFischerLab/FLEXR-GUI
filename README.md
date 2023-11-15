@@ -40,7 +40,7 @@ cp -r ./FLEXR-GUI/* /opt/homebrew/Cellar/coot/<version>/lib/python3.11/site-pack
 and Intel Macs:
 
 ```
-cp -r ./FLEXR-GUI/* /user/local/homebrew/Cellar/coot/<version>/lib/python3.11/site-packages/coot
+cp -r ./FLEXR-GUI/* /usr/local/Cellar/coot/<version>/lib/python3.11/site-packages/coot/
 ```
 
 4. Launch Coot1 with the `FLEXR-GUI` extension using:
