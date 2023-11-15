@@ -49,9 +49,10 @@ cp -r ./FLEXR-GUI/* /user/local/homebrew/Cellar/coot/<version>/lib/python3.11/si
 /path/to/bin/coot --script /path/to/flexr_extentions.py
 ```
 
-5. (optional) A variable in your path can be created so that Coot1 always opens with `FLEXR` loaded with:
+5. (optional) A variable in your path can be created so that Coot1 always opens with `FLEXR` loaded:
 ```
 alias coot1='/path/to/bin/coot --script /path/to/flexr_extentions.py'
+coot1
 ```
 
 ## Usage
