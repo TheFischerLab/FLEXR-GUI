@@ -32,17 +32,23 @@ def intro_messages():
 
 def get_coot_loc():
     try:
+        cootexe = '/opt/homebrew/bin/coot'
         version = os.popen('/opt/homebrew/bin/coot --version').read()
         version = version.split()[0]
+        cootloc = '/opt/homebrew/Cellar/coot/'+version+'/lib/python3.11/site-packages/coot/'
         libraryloc = '/opt/homebrew/Cellar/coot/'+version+'/lib/python3.11/site-packages/coot/library/rotamer_library_coot.csv'
     except:
         try:
+            cootexe = '/usr/local/bin/coot'
             version = os.popen('/usr/local/bin/coot --version').read()
             version = version.split()[0]
+            cootloc = '/usr/local/Cellar/coot/'+version+'/lib/python3.11/site-packages/coot/'
             libraryloc = '/usr/local/Cellar/coot/'+version+'/lib/python3.11/site-packages/coot/library/rotamer_library_coot.csv'
         except:
+            cootloc = 'NULL'
             libraryloc = 'NULL'
-    return str(libraryloc)
+            cootexe = 'NULL'
+    return str(libraryloc),str(cootloc),str(cootexe)
 
 
 def check_library():
@@ -56,7 +62,7 @@ def check_library():
         print('Loading ideal rotamer library...')
         #library = pd.read_csv('./library/rotamer_library_coot.csv',header=0)
         #library = pd.read_csv('/opt/homebrew/Cellar/coot/1.1.01/lib/python3.11/site-packages/library/rotamer_library_coot.csv',header=0)
-        libraryloc = get_coot_loc()
+        libraryloc,cootloc,cootexe = get_coot_loc()
         library = pd.read_csv(libraryloc,header=0)
         chi_labels = ['chi1_mean','chi2_mean','chi3_mean','chi4_mean']
         for i in chi_labels:

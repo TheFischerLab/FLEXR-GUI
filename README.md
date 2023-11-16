@@ -32,7 +32,10 @@ Once these are installed, you need to install these python libraries to the Home
 git clone https://github.com/TheFischerLab/FLEXR-GUI.git
 ```
 
-3. Move the contents of `FLEXR-GUI` into the Coot1 Python directory. For example on M1 Macs, with:
+3. Move the contents of `FLEXR-GUI` into the Coot1 Python directory.
+
+For example on M1 Macs, where `<version>` is the Coot1 version you installed:
+
 ```
 cp -r ./FLEXR-GUI/* /opt/homebrew/Cellar/coot/<version>/lib/python3.11/site-packages/coot
 ```
@@ -50,9 +53,9 @@ cp -r ./FLEXR-GUI/* /usr/local/Cellar/coot/<version>/lib/python3.11/site-package
 ```
 
 5. (optional) A variable in your path can be created so that Coot1 always opens with `FLEXR` loaded:
+
 ```
 alias coot1='/path/to/bin/coot --script /path/to/flexr_extentions.py'
-coot1
 ```
 
 ## Usage
@@ -72,10 +75,18 @@ coot1
 
 ## Output
 
-1. Running the `FLEXR-GUI` will create a new PDB file with alternative side chain conformations (if any are found).
+1. Running the `FLEXR-GUI` will create a (1) 'modified' PDB with any alternative conformations included in the original model removed, and (2) a new PDB file with alternative side chain conformations from FLEXR (if any are found).
 New alt confs can be quickly assessed with a native Coot1 `altconf GUI` (Draw->Molecule->Residues with Alt Confs...):
 
 ![FLEXR-GUI](img/flexr-gui4.png)
 
 2. The typical `FLEXR` output files are saved in the directory from which Coot1 was launched.
-More information on that can be found in the original [FLEXR](https://github.com/thefischerlab/flexr) repository.
+
+```
+     ...ringer.csv - raw Ringer electron density measurements
+peak_finder....csv - Ringer peak detection summary
+       ...alts.csv - list of alternative conformations found by FLEXR that were built into the model
+      ...flexr.pdb - final output FLEXR model that should be used for further refinement
+```
+
+More information can be found in the original [FLEXR](https://github.com/thefischerlab/flexr) repository.

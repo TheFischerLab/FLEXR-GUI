@@ -68,9 +68,15 @@ def main(ARGS):
                     ARGS.mode,ARGS.geotolerance,ARGS.build_limit,ARGS.ligand,\
                     ARGS.pdb_in,ARGS.distance,ARGS.singleconfs)
         if (ARGS.build == 'True') & (ARGS.pdb_in is not None):
-            # needs to test for coot before calling coot. also needs a universal path
-            os.system('/opt/homebrew/Cellar/cootgtk4/HEAD-e08d854/bin/coot --script ./src/building/flexr_build.py %s %s %s %s %s' % (build_list,ARGS.pdb_in,ARGS.branching,ARGS.cootmolnum,ARGS.exitcoot))
+            from src.flexrpkg import top_level
+            from src.flexrpkg.top_level import get_coot_loc
+            libraryloc, cootloc,cootexe = get_coot_loc()
+            try:
+                buildpath = cootloc+'src/building/flexr_build.py'
+                os.system('%s --script %s %s %s %s %s %s' % (cootexe,buildpath,build_list,ARGS.pdb_in,ARGS.branching,ARGS.cootmolnum,ARGS.exitcoot))
             #os.system('COOT1 --script flexr_build.py %s %s %s %s %s' % (build_list,ARGS.pdb_in,ARGS.branching,ARGS.cootmolnum,ARGS.exitcoot))
+            except:
+                print('Cannot find flexr building script.')
         else:
             print('Done.')
 

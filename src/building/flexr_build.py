@@ -111,7 +111,9 @@ def building(build_list,filein,branchopt,molnum,exitopt,atom_list,alt_loc):
         coot.set_go_to_atom_chain_residue_atom_name(chain,resno+1,'CA')
         #output model
         coot.write_pdb_file(molnum,build_list_file+'_flexr.pdb')
-        print('Building finished...')
+        print('Building finished.')
+        print('FLEXR succesfully finished.')
+        print('')
 
 def exit(exitopt):
 
