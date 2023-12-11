@@ -84,6 +84,8 @@ if __name__ == '__main__':
     from src.flexrpkg.top_level import args
     ARGS = args()
     main(ARGS)
+    print('FLEXR is finished.')
+    print('')
 
 
 

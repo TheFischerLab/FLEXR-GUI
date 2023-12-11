@@ -25,6 +25,7 @@ def run_flexr(imol,mol,imap,mtz,ringerfile,branching,densitythreshold,singleconf
 
     from flexr import main
     from src.building import flexr_build
+    from src.building import flexr_analysis
 
     print('Initiating FLEXR...')
 
@@ -41,8 +42,8 @@ def run_flexr(imol,mol,imap,mtz,ringerfile,branching,densitythreshold,singleconf
             # use phenix to remove alt confs
             os.system('phenix.pdbtools %s remove_alt_confs=True' % (mol))
             mol = mol.split('/')[-1][:-4]+"_modified.pdb"
-            imol = coot.read_pdb(mol)
-            ARGS.cootmolnum = imol
+            imolnoconf = coot.read_pdb(mol)
+            ARGS.cootmolnum = imolnoconf
 
             os.system('phenix.maps %s %s' % (mol,mtz))
             map_coef = mol.split()[0][:-4]+"_map_coeffs.mtz"
@@ -76,7 +77,14 @@ def run_flexr(imol,mol,imap,mtz,ringerfile,branching,densitythreshold,singleconf
     main(ARGS)
 
     # run the building step
-    flexr_build.building_run(altsfile,ARGS.pdb,ARGS.branching,ARGS.cootmolnum,ARGS.exitcoot)
+    flexrmolnum = flexr_build.building_run(altsfile,ARGS.pdb,ARGS.branching,ARGS.cootmolnum,ARGS.exitcoot)
+    #try:
+    flexr_analysis.output_summaries(altsfile,imol,flexrmolnum)
+    #except:
+    #    print('Error producing output summary.')
+
+    print('FLEXR is finished.')
+    print('')
 
 
 def add_flexr_gui():
@@ -307,7 +315,7 @@ def add_flexr_gui():
 
     # Create places for drop down option
     # coordination number combobox
-    number_text = Gtk.Label(label="  Sidechain Branching: ")
+    number_text = Gtk.Label(label="  Sidechain branching: ")
     combobox_coordination = Gtk.ComboBoxText.new()
     for i in ['ALL','CA']:
         combobox_coordination.append_text(str(i))

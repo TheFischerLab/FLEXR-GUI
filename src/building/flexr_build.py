@@ -72,14 +72,14 @@ def building(build_list,filein,branchopt,molnum,exitopt,atom_list,alt_loc):
         molnum = int(molnum)
 
         if filein == 'None':
-            molnum = coot.copy_molecule(molnum)
+            flexrmolnum = coot.copy_molecule(molnum)
             filein = ''
             # doesn't work
-            coot.set_molecule_name(molnum,build_list_file+'_flexr.pdb')
+            coot.set_molecule_name(flexrmolnum,build_list_file+'_flexr.pdb')
             # delete existing alt confs
             #
         else:
-            imol = coot.read_pdb(filein)
+            flexrmolnum = coot.read_pdb(filein)
 
         for p in build_list[['chain','res_n']].drop_duplicates().values:
             print(p)
@@ -92,29 +92,39 @@ def building(build_list,filein,branchopt,molnum,exitopt,atom_list,alt_loc):
                 print('For: ',resno,rotamer,chain)
                 coot.set_go_to_atom_chain_residue_atom_name(chain,resno,'CA')
                 if k == 0:
-                    coot.set_residue_to_rotamer_name(molnum,chain,resno,'','',rotamer)
+                    coot.set_residue_to_rotamer_name(flexrmolnum,chain,resno,'','',rotamer)
                 if k == 1:
                     coot.altconf()
                     coot.set_add_alt_conf_split_type_number(branchopt)
                     coot_utils.with_auto_accept(\
-                    [coot.add_alt_conf_py,molnum,chain,resno,'','',1])
-                    coot.set_residue_to_rotamer_name(molnum,chain,resno,'','B',rotamer)
+                    [coot.add_alt_conf_py,flexrmolnum,chain,resno,'','',1])
+                    coot.set_residue_to_rotamer_name(flexrmolnum,chain,resno,'','B',rotamer)
                 if k > 1:
                     coot.altconf()
                     coot.set_add_alt_conf_split_type_number(branchopt)
                     coot_utils.with_auto_accept(\
-                    [coot.add_alt_conf_py,molnum,chain,resno,'','A',1])
+                    [coot.add_alt_conf_py,flexrmolnum,chain,resno,'','A',1])
                     for atom in atom_list:
                         coot.set_atom_string_attribute(\
-                        molnum,chain,resno,'',atom,'','alt-conf',alt_loc[k])
-                    coot.set_residue_to_rotamer_name(molnum,chain,resno,'',alt_loc[k],rotamer)
+                        flexrmolnum,chain,resno,'',atom,'','alt-conf',alt_loc[k])
+                    coot.set_residue_to_rotamer_name(flexrmolnum,chain,resno,'',alt_loc[k],rotamer)
         coot.set_go_to_atom_chain_residue_atom_name(chain,resno+1,'CA')
         #output model
-        coot.write_pdb_file(molnum,build_list_file+'_flexr.pdb')
+        coot.write_pdb_file(flexrmolnum,build_list_file+'_flexr.pdb')
+
         print('Building finished.')
-        print('FLEXR succesfully finished.')
         print('')
 
+        return flexrmolnum
+
+
+#def refinement():
+        #print('List of residues with altconfsz:')
+        #print('')
+        #coot_utils.residues_with_alt_confs(molnum)
+        #coot_utils.refine_residues_with_alt_conf()
+
+        print('')
 def exit(exitopt):
 
     if (exitopt == 'True'):
@@ -130,9 +140,11 @@ def building_run(build_list,filein,branchopt,molnum,exitopt):
 
         alt_loc = get_alt_locs()
 
-        building(build_list,filein,branchopt,molnum,exitopt,atom_list,alt_loc)
+        flexrmolnum = building(build_list,filein,branchopt,molnum,exitopt,atom_list,alt_loc)
 
         exit(exitopt)
+
+        return flexrmolnum
 
 if __name__ == '__main__':
     print(sys.argv[:])
