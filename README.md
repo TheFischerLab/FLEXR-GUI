@@ -23,7 +23,7 @@ Once these are installed, you need to install these python libraries to the Home
 1. Install Python libraries (approximate path for M1 Macs):
 
 ```
-/opt/homebrew/bin/python3.12 -m pip install pandas numpy scipy matplotlib matplotlib-venn
+/opt/homebrew/bin/python3.12 -m pip install pandas numpy scipy matplotlib matplotlib-venn --break-system-packages
 ```
 
 2. Clone the latest release of `FLEXR-GUI`:
