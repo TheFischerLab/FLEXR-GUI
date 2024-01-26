@@ -39,9 +39,16 @@ def run_flexr(imol,mol,imap,mtz,ringerfile,branching,densitythreshold,singleconf
             print('Running Ringer...')
             print(mol,mtz)
 
+            pdbformat = mol[-4:]
+
             # use phenix to remove alt confs
             os.system('phenix.pdbtools %s remove_alt_confs=True' % (mol))
-            mol = mol.split('/')[-1][:-4]+"_modified.pdb"
+
+            if pdbformat == '.ent':
+                pdbformat = '.pdb'
+                mol = mol[:-4]+pdbformat
+
+            mol = mol.split('/')[-1][:-4]+"_modified"+pdbformat
             imolnoconf = coot.read_pdb(mol)
             ARGS.cootmolnum = imolnoconf
 
@@ -53,6 +60,10 @@ def run_flexr(imol,mol,imap,mtz,ringerfile,branching,densitythreshold,singleconf
             ringerfile = mol.split('/')[-1][:-4]+"_ringer.csv"
             ARGS.filename = ringerfile
             altsfile = ringerfile[:-4]+"_"+str(densitythreshold)+"_alts.csv"
+
+            testfileexists = open(ringerfile)
+            testfileexists.close()
+
         except:
             print('Cannot find Phenix/CCTBX or it failed.')
             print('Done.')

@@ -34,20 +34,24 @@ def get_coot_loc():
     try:
         cootexe = '/opt/homebrew/bin/coot'
         version = os.popen('/opt/homebrew/bin/coot --version').read()
-        version = version.split()[0]
-        cootloc = '/opt/homebrew/Cellar/coot/'+version+'/lib/python3.11/site-packages/coot/'
-        libraryloc = '/opt/homebrew/Cellar/coot/'+version+'/lib/python3.11/site-packages/coot/library/rotamer_library_coot.csv'
+        cootversion = version.split()[3]
+        pythonversion = version.split()[8][:4]
+        cootloc = '/opt/homebrew/Cellar/coot/'+cootversion+'/lib/python'+pythonversion+'/site-packages/coot/'
+        libraryloc = '/opt/homebrew/Cellar/coot/'+cootversion+'/lib/python'+pythonversion+'/site-packages/coot/library/rotamer_library_coot.csv'
     except:
         try:
             cootexe = '/usr/local/bin/coot'
             version = os.popen('/usr/local/bin/coot --version').read()
-            version = version.split()[0]
-            cootloc = '/usr/local/Cellar/coot/'+version+'/lib/python3.11/site-packages/coot/'
-            libraryloc = '/usr/local/Cellar/coot/'+version+'/lib/python3.11/site-packages/coot/library/rotamer_library_coot.csv'
+            cootversion = version.split()[3]
+            pythonversion = version.split()[8][:4]
+            cootloc = '/usr/local/Cellar/coot/'+cootversion+'/lib/python'+pythonversion+'/site-packages/coot/'
+            libraryloc = '/usr/local/Cellar/coot/'+cootversion+'/lib/python'+pythonversion+'/site-packages/coot/library/rotamer_library_coot.csv'
         except:
             cootloc = 'NULL'
             libraryloc = 'NULL'
             cootexe = 'NULL'
+    print('FLEXR thinks things are located here:')
+    print(libraryloc,cootloc,cootexe)
     return str(libraryloc),str(cootloc),str(cootexe)
 
 

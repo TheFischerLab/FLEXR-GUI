@@ -23,7 +23,7 @@ Once these are installed, you need to install these python libraries to the Home
 1. Install Python libraries (approximate path for M1 Macs):
 
 ```
-/opt/homebrew/bin/python3.11 -m pip install pandas numpy scipy matplotlib
+/opt/homebrew/bin/python3.12 -m pip install pandas numpy scipy matplotlib matplotlib-venn
 ```
 
 2. Clone the latest release of `FLEXR-GUI`:
@@ -37,13 +37,13 @@ git clone https://github.com/TheFischerLab/FLEXR-GUI.git
 For example on M1 Macs, where `<version>` is the Coot1 version you installed:
 
 ```
-cp -r ./FLEXR-GUI/* /opt/homebrew/Cellar/coot/<version>/lib/python3.11/site-packages/coot
+cp -r ./FLEXR-GUI/* /opt/homebrew/Cellar/coot/<version>/lib/python3.12/site-packages/coot
 ```
 
 and Intel Macs:
 
 ```
-cp -r ./FLEXR-GUI/* /usr/local/Cellar/coot/<version>/lib/python3.11/site-packages/coot/
+cp -r ./FLEXR-GUI/* /usr/local/Cellar/coot/<version>/lib/python3.12/site-packages/coot/
 ```
 
 4. Launch Coot1 with the `FLEXR-GUI` extension using:

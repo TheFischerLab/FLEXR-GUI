@@ -48,6 +48,7 @@ def output_summaries(altsfile,imol,flexrmolnum):
     v1 = venn2(subsets,('Original','FLEXR'),ax=ax1)
     circles = venn2_circles(subsets=subsets, linestyle='solid',color='black',ax=ax1)
     ax1.title.set_text("Residues modeled \n with alternative conformations")
+    ax1.set_box_aspect(1)
 
     alts = pd.read_csv(altsfile).value_counts()
     alts = alts.reset_index()[['res_n','chain']].value_counts().reset_index()
@@ -61,6 +62,7 @@ def output_summaries(altsfile,imol,flexrmolnum):
     #ax2.set_yticks(np.arange(0,max(alts['count']+1),3))
     ax2.set_xlabel('Alternative conformations per residue (n) \n in FLEXR model')
     ax2.set_ylabel('Residues (n)')
+    ax1.set_box_aspect(1)
 
     figure.tight_layout()
     figure.savefig('summary.png',dpi=500)
