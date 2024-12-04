@@ -9,6 +9,10 @@ Stachowski, T. R. & Fischer, M.
 [FLEXR: automated multi-conformer model building using electron-density map sampling.](https://doi.org/10.1107/S2059798323002498)
 2023 Acta Cryst. D79.
 
+Stachowski, T. R. & Fischer, M.
+[FLEXR GUI: a graphical user interface for multi-conformer modeling of proteins.](https://doi.org/10.1107/S1600576724001523)
+2024 J Appl Crystallogr.
+
 ## Installation
 
 `FLEXR-GUI` was tested on Intel and M1 Macs running macOS Sonoma.
